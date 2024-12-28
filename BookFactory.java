@@ -15,15 +15,30 @@ public class BookFactory {
             return db.length;
         }
 
+        private void resizeDb() {
+            Book[] newDb = new Book[db.length + 15];
+            for (int i= 0; i<db.length; i++){
+                newDb[i] = db[i];
+            }
+            db = newDb;
+        }
+
         public Book add(Book obj) throws Exception {
             if (size >= db.length){
-                throw new Exception("Out of Space");
+                //throw new Exception("Out of Space");
+                resizeDb();
             }
             db[size] = obj;
             size++;
            // System.out.println("New data successfully added");
             return db[size-1];
         }
+
+
+
+
+
+
 
         public Book add(int index, Book obj){
 
