@@ -1,12 +1,14 @@
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
-import java.util.Scanner;
 
 public class BookClient1 {
 
     public static void main(String[] args) {
-        BookFactory factory = new BookFactory();
+        bookFactory();
+    }
+
+        public static void bookFactory(){
+                    BookFactory factory = new BookFactory();
         System.out.println("Total Elements: " + factory.getSize());
         System.out.println("Total DB size: " + factory.getdbCapacity());
         System.out.println("Remaining Size: " + factory.remaining());
@@ -47,6 +49,7 @@ public class BookClient1 {
             FileReader file = new FileReader("bookData.txt");
             BufferedReader br = new BufferedReader(file);
             String var;
+            int count = 0;
             while ((var = br.readLine()) != null){
                  String[] dataBase = var.split(",");
                  Book book = new Book(
@@ -57,21 +60,22 @@ public class BookClient1 {
                          Boolean.parseBoolean(dataBase[4])
                  );
                  System.out.println(factory.add(book));
+                 count++;
                  System.out.println();
-
              }
+            System.out.println("\n" + count + " Book Successfully added");
+
 
 
             System.out.println();
             System.out.println("Total Elements: " + factory.getSize());
             System.out.println("Total DB size: " + factory.getdbCapacity());
             System.out.println("Remaining Size: " + factory.remaining());
+            System.out.println();
 
+            System.out.println(factory.peekDb());
         } catch (Exception e){
             System.err.println(e.getMessage());
         }
     }
-
-
-
 }

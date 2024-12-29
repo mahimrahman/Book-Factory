@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class BookFactory {
         private int size;
         private Book[] db;
@@ -23,7 +25,7 @@ public class BookFactory {
             db = newDb;
         }
 
-        public Book add(Book obj) throws Exception {
+        public Book add(Book obj) {
             if (size >= db.length){
                 //throw new Exception("Out of Space");
                 resizeDb();
@@ -34,15 +36,9 @@ public class BookFactory {
             return db[size-1];
         }
 
-
-
-
-
-
-
         public Book add(int index, Book obj){
 
-            System.out.println("New data successfully added");
+            //System.out.println("New data successfully added");
             return null;
         }
 
@@ -78,4 +74,26 @@ public class BookFactory {
         public int remaining(){
             return (db.length - size);
         }
-}
+
+        public String peekDb() {
+            int count = 0;
+            String s = "";
+//            for (int i = 0; i < db.length; i++) {
+//                if (db[i] != null) {
+//                    System.out.println(i + " 1");
+//                } else {
+//                    System.out.println(i + " 0");
+//                }
+                for (int i = 0; i < db.length; i++) {
+                    if (db[i] != null) {
+                        s += i + "(1) ";
+                    }
+                    else {
+                        s += i + "(0) ";
+                    }
+
+                    count++;
+                    if (count > 10){count =0;
+                        s += "\n";}
+            } return s;
+        }}
