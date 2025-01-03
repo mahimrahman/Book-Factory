@@ -73,7 +73,18 @@ public class BookClient1 {
             System.out.println("Remaining Size: " + factory.remaining());
             System.out.println();
 
-            System.out.println(factory.peekDb());
+            System.out.println(factory.peekDb()) ;
+
+            factory.add(4, new Book("Mahim","Sanjana", 2025, "#123345", true ));
+            System.out.println(factory.getBook(4));
+            System.out.println();
+
+            System.out.println("Total Elements: " + factory.getSize());
+            System.out.println("Total DB size: " + factory.getdbCapacity());
+            System.out.println("Remaining Size: " + factory.remaining());
+            System.out.println();
+
+            System.out.println(factory.peekDb()) ;
         } catch (Exception e){
             System.err.println(e.getMessage());
         }

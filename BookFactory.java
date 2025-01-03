@@ -36,10 +36,16 @@ public class BookFactory {
             return db[size-1];
         }
 
-        public Book add(int index, Book obj){
+        public Book add(int index, Book obj) throws Exception {
+            if (index < 0 && index >= size) throw new Exception ("Index not within constraint");
 
+            for (int i = size; i >= index; i--){
+                db[i] = db[i-1];
+            }
+            db[index] = obj;
             //System.out.println("New data successfully added");
-            return null;
+            size++;
+            return obj;
         }
 
 
@@ -63,8 +69,10 @@ public class BookFactory {
             return db;
         }
 
-        public Book getBook(int index){
-            return null;
+        public Book getBook(int index) throws Exception {
+            if (index < 0 && index >= size) throw new Exception ("Index not within constraint");
+            System.out.println("Value from Index: " + index);
+            return db[index];
         }
 
         public Book getBook(String search){
