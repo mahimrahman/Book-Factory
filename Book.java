@@ -1,15 +1,15 @@
-public class Book
-{
+public class Book {
     private String title;
     private String serialNumber;
     private String author;
     private int year;
     private Boolean isAvailable;
 
-    public Book(){
+    public Book() {
 
     }
-    public Book(String title,String author,int year, String serialNumber,boolean isAvailable){
+
+    public Book(String title, String author, int year, String serialNumber, boolean isAvailable) {
         this.title = title;
         this.author = author;
         this.year = year;
@@ -17,13 +17,14 @@ public class Book
         this.isAvailable = isAvailable;
 
     }
-    public String toString(){
+
+    public String toString() {
         return "Book Details: \n" + " Title: " + title + "\n" + " Author: " + author + "\n Year: " + year + "\n Serial No: " + serialNumber + "\n Availability: " + isAvailable;
     }
 
     //tostring modification
-    public String reFormat(){
-        return "Book Details: \n" + " Availability: " + isAvailable + "\n Title: " + title +"\n Author: " + author + "\n Year: " + year + "\n Serial No: " + serialNumber ;
+    public String reFormat() {
+        return "Book Details: \n" + " Availability: " + isAvailable + "\n Title: " + title + "\n Author: " + author + "\n Year: " + year + "\n Serial No: " + serialNumber;
     }
 
 

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 
 public class BookClient {
-    public static void main(String[] arg){
+    public static void main(String[] arg) {
 //        Book newBook = new Book();
 //        newBook.setTitle("Lord of the Rings");
 //        newBook.setAuthor("Mahim");
@@ -43,16 +43,16 @@ public class BookClient {
 //            } else {
 //                System.out.println("The file does not exist.");
 //            }
-           // System.out.println(file.length());
+            // System.out.println(file.length());
             int count = 0;
-            while (sc.hasNextLine()){
+            while (sc.hasNextLine()) {
                 count = count + 1;
                 sc.nextLine();
-               // System.out.println(sc.nextLine());
+                // System.out.println(sc.nextLine());
             }
 
 
-           // System.out.println("count " + count);
+            // System.out.println("count " + count);
 
             sc.close();
 
@@ -64,7 +64,7 @@ public class BookClient {
             String line;
 
             while ((line = br.readLine()) != null) {
-               // System.out.println(line);
+                // System.out.println(line);
                 String[] inputs = line.split(",");
                 Book book = new Book(
                         inputs[0],
@@ -77,14 +77,14 @@ public class BookClient {
                 i++;
             }
 
-            for (i = 0; i < array.length; i++){
+            for (i = 0; i < array.length; i++) {
                 System.out.println(array[i]);
                 System.out.println();
             }
 
         } catch (
                 Exception e
-        ){
+        ) {
             System.out.println(Arrays.toString(e.getStackTrace()));
         }
     }
