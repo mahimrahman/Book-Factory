@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.io.*;
 
 public class BookFactory {
     private int size;
@@ -36,6 +36,16 @@ public class BookFactory {
         return db;
     }
 
+    private Book[] flatten(Book[] db) {
+        Book[] newDb = new Book[size];
+        for (int i = 0; i <= size - 1; i++) {
+            newDb[i] = this.db[i];
+            System.out.println(newDb[i]);
+        }
+        return newDb;
+    }
+
+
     public Book add(Book obj) {
         if (size >= db.length) {
             //throw new Exception("Out of Space");
@@ -49,8 +59,8 @@ public class BookFactory {
 
     public Book add(int index, Book obj) throws Exception {
         if (index < 0 && index >= size) throw new Exception("Index not within constraint");
-        for (int i = size - 1 ; i >= index; i--) {
-            db[i+1] = db[i];
+        for (int i = size - 1; i >= index; i--) {
+            db[i + 1] = db[i];
         }
         db[index] = obj;
         //System.out.println("New data successfully added");
@@ -96,6 +106,7 @@ public class BookFactory {
     }
 
     public Book[] getBook() {
+        flatten(db);
         return db;
     }
 
@@ -143,4 +154,42 @@ public class BookFactory {
             System.out.println(db[i]);
         }
     }
+
+    public void saveFile() {
+        // Save the array to a file
+        try (ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream("books.dat"))) {
+            save.writeObject(db);
+            System.out.println("Books array saved to file.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readSavedFile() {
+        // Read the array back from the file
+        try (ObjectInputStream read = new ObjectInputStream(new FileInputStream("books.dat"))) {
+            Book[] loadedBooks = (Book[]) read.readObject();
+            System.out.println("Books array loaded from file:");
+            for (Book book : loadedBooks) {
+                System.out.println(book);
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveFileTxt() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("books.txt"))) {
+            for (Book book : db) {
+                String line = book.getTitle() + "," + book.getAuthor() + "," + book.getYear() + ","
+                        + book.getSerialNumber() + "," + book.isAvailable();
+                writer.write(line);
+                writer.newLine(); // Adds a newline after each book
+            }
+            System.out.println("Books saved to text file.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
