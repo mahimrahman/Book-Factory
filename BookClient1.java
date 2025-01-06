@@ -57,9 +57,9 @@ public class BookClient1 {
                         dataBase[3],
                         Boolean.parseBoolean(dataBase[4])
                 );
-                System.out.println(factory.add(book));
+    factory.add(book);
                 count++;
-                System.out.println();
+    //            System.out.println();
             }
             System.out.println("\n" + count + " Book Successfully added");
 
@@ -76,26 +76,22 @@ public class BookClient1 {
             System.out.println(factory.getBook(4));
             System.out.println();
 
-            System.out.println("Total Elements: " + factory.getSize());
-            System.out.println("Total DB size: " + factory.getdbCapacity());
-            System.out.println("Remaining Size: " + factory.remaining());
-            System.out.println();
-            System.out.println(factory.peekDb());
+            factory.peekDb();
 
-            System.out.println(factory.remove());
-            System.out.println(factory.remove(0));
+//            System.out.println(factory.remove());
+//            System.out.println(factory.remove(0));
             //factory.removeall();
 
-            System.out.println("Total Elements: " + factory.getSize());
-            System.out.println("Total DB size: " + factory.getdbCapacity());
-            System.out.println("Remaining Size: " + factory.remaining());
+
+            factory.add(51, new Book("Mahim", "Sanjana", 2025, "#123345", true));
+   //         factory.display(factory.compressDb());
             System.out.println();
 
-            factory.add(0, new Book("Mahim", "Sanjana", 2025, "#123345", true));
-            factory.display(factory.compressDb());
+
             System.out.println("Total Elements: " + factory.getSize());
             System.out.println("Total DB size: " + factory.getdbCapacity());
             System.out.println("Remaining Size: " + factory.remaining());
+
 //            System.out.println("Total Elements: " + factory.getSize());
 //            System.out.println("Total DB size: " + factory.getdbCapacity());
 //            System.out.println("Remaining Size: " + factory.remaining());
@@ -107,7 +103,12 @@ public class BookClient1 {
 //factory.readSavedFile();
             System.out.println();
 
-
+            factory.saveFileTxt();
+            factory.remove(0);
+            factory.saveFileTxt();
+            factory.removeall();
+            factory.add(0, new Book("Ikti is sad", "Mahim", 2025, "#123345", true));
+            factory.saveFileTxt();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

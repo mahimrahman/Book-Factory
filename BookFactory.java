@@ -36,7 +36,7 @@ public class BookFactory {
         return db;
     }
 
-    private Book[] flatten(Book[] db) {
+    private Book[] flatten() {
         Book[] newDb = new Book[size];
         for (int i = 0; i <= size - 1; i++) {
             newDb[i] = this.db[i];
@@ -106,8 +106,7 @@ public class BookFactory {
     }
 
     public Book[] getBook() {
-        flatten(db);
-        return db;
+         return flatten();
     }
 
     public Book getBook(int index) throws Exception {
@@ -180,8 +179,8 @@ public class BookFactory {
 
     public void saveFileTxt() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("books.txt"))) {
-            for (Book book : db) {
-                String line = book.getTitle() + "," + book.getAuthor() + "," + book.getYear() + ","
+            for (Book book : flatten()) {
+            String line = book.getTitle() + "," + book.getAuthor() + "," + book.getYear() + ","
                         + book.getSerialNumber() + "," + book.isAvailable();
                 writer.write(line);
                 writer.newLine(); // Adds a newline after each book
@@ -190,6 +189,7 @@ public class BookFactory {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }
 
