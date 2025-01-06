@@ -103,12 +103,13 @@ public class BookClient1 {
 //factory.readSavedFile();
             System.out.println();
 
-            factory.saveFileTxt();
-            factory.remove(0);
-            factory.saveFileTxt();
+
+            factory.saveBooksToFile(factory.getBook(), "Book Colection.txt");
             factory.removeall();
-            factory.add(0, new Book("Ikti is sad", "Mahim", 2025, "#123345", true));
-            factory.saveFileTxt();
+
+            factory.add(new Book("Ikti is sad", "Mahim", 2025, "#123345", true));
+            factory.saveBooksToFile(factory.getBook(), "Book Colection.txt");
+
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

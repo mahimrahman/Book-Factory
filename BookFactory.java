@@ -177,19 +177,34 @@ public class BookFactory {
         }
     }
 
-    public void saveFileTxt() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("books.txt"))) {
-            for (Book book : flatten()) {
-            String line = book.getTitle() + "," + book.getAuthor() + "," + book.getYear() + ","
-                        + book.getSerialNumber() + "," + book.isAvailable();
-                writer.write(line);
-                writer.newLine(); // Adds a newline after each book
+//    public void saveFileTxt() {
+//        try (BufferedWriter writer = new BufferedWriter(new FileWriter("books.txt"))) {
+//            for (Book book : flatten()) {
+//            String line = book.getTitle() + "," + book.getAuthor() + "," + book.getYear() + ","
+//                        + book.getSerialNumber() + "," + book.isAvailable();
+//                writer.write(line);
+//                writer.newLine(); // Adds a newline after each book
+//            }
+//            System.out.println("Books saved to text file.");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    public static void saveBooksToFile(Book[] books, String fileName) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            for (Book book : books) {
+                if (book != null) {
+                    String line = book.getTitle() + "," + book.getAuthor() + "," + book.getYear() + ","
+                            + book.getSerialNumber() + "," + book.isAvailable();
+                    writer.write(line);
+                    writer.newLine(); // Adds a newline after each book
+                }
             }
-            System.out.println("Books saved to text file.");
+            System.out.println("Books appended to the file.");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
 
